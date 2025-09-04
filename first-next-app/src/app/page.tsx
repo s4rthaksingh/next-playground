@@ -7,11 +7,11 @@ import { useState } from "react";
 export default function Home() {
   const [result, setResult] = useState<any>(null);
 
-  const sendData = async () => {
-    const res = await fetch('/api/hello', {
+  const sendData = async (operands : Array<number>, operation : string) => {
+    const res = await fetch('/api/calculate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: 'Hello from Next.js' }),
+      body: JSON.stringify({ operands : operands, operation : operation }),
     });
 
     setResult(await res.json());
@@ -19,11 +19,11 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <h1 className="font-bold">Welcome to my home page</h1>
-      <Link href="/about">Go to about page</Link><br />
-      <button onClick={sendData}>Send POST</button><br />
-      {result && JSON.stringify(result["recieved"]["text"])}      
+    <div className="w-screen h-screen flex flex-col justify-center items-center">
+      <h1 className="font-bold">Welcome to my home page</h1> 
+      <Link href="/about">Go to about page</Link>
+      <button onClick={() => sendData(eval("[1,2,4]"), "+")}>Send POST</button>
+      {result && JSON.stringify(result["result"])}      
     </div>
   );
 }
