@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import React from 'react'
 
 function MyPage() {
@@ -5,6 +6,7 @@ function MyPage() {
     <div className="h-full flex justify-center items-center flex-col">
         <div>MyPage :D</div>
         <button className='px-5 py-2 bg-white text-black rounded-md hover:bg-gray-300'>Click me!</button>
+        <Button>Shadcn button</Button>
     </div>
   )
 }
