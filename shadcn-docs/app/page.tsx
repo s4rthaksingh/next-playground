@@ -1,9 +1,17 @@
 import { Button } from "@/components/ui/button";
 
-export default function Home() {
+async function getData() {
+  const res = await fetch("/api/hello");
+  return res.json();
+}
+
+export default async function Home() {
+  const resultObject = await getData();
   return (
-    <div className="flex justify-center items-center h-screen">
-      <Button>Is this a shadcn button</Button>
+    <div className="flex justify-center items-center h-screen bg-background text-foreground">
+      <div>
+        {resultObject.message}
+      </div>
     </div>
   );
 }
